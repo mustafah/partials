@@ -7,13 +7,12 @@
 Inspired from C# partial classes for typescript, Simplified 🎀 syntax that may help divide functionality of a single class into multiple 🍬🍬🍬 class files
 
 
-
 ### Install
 
 Install dependencies with npm:
 
 ```bash
-npm i partials
+npm i mustafah/partials
 ```
 
 ### Import
