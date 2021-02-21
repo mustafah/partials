@@ -1,6 +1,6 @@
 {
   "name": "partials",
-  "version": "1.0.5",
+  "version": "1.0.0",
   "description": "For typescript inspired from C# partial classes, help divide functionality of a single class into multiple classes files",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
