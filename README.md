@@ -1,13 +1,12 @@
 
 <p align="center">
   <img width="128" src="https://static.thenounproject.com/png/2775817-200.png">
-  <h1 style="text-align: center">Typescript Partials</h1>
+  <h1 style="text-align: center">Typescript Partials <span style="font-size: 25%">(αlpha release)</span></h1>
 </p>
 
 Inspired from C# partial classes for typescript, Simplified 🎀 syntax that may help divide functionality of a single class into multiple 🍬🍬🍬 class files
 
 
-## Installation
 
 ### Install
 
@@ -43,6 +42,7 @@ import partial from 'partials';
 ```
 ```ts
 @partial export class EmployeeLunch {
+  
     @partial model: EmployeeModel;
     goToLunch() {
         console.log(`goToLunch()`);
