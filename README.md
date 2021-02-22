@@ -21,6 +21,7 @@ import partial from 'partials';
 ```
 
 ### Add your partial classes 🍬🍬🍬
+###### Split class function through multiple files
 ```ts
 @partial export class Employee {
     @partial work: EmployeeWork;
@@ -47,10 +48,79 @@ import partial from 'partials';
     }
 }
 ```
-### Use your class
+### 🎁 Voila, Use your class 👏
 ```ts
 new Employee().start()
 // Ouputs:
 // goToWork()
 // goToLunch()
+```
+---
+
+##### 🌱 Need initialization code ?
+```ts
+@partial export class Employee {
+    @partial work: EmployeeWork;
+    @partial lunch: EmployeeLunch;
+    ///////////////////////////////////////////////
+    // Use onInit() instead of class's constructor 
+    /////////////////////////////////////////////
+    onInit() {
+        this.work.doWork();
+        this.lunch.goToLunch();
+    }
+}
+```
+---
+##### 🌱 TwoWay communication between classes ?
+If you tried the following scenario, JS Runtime will raise <span style="background: #FFEFF0; color: #FF0200; border-radius: 4px; padding: 4px;font-size: 80%">🚫 Uncaught ReferenceError: Cannot access 'Employee' before initialization</span> error and <span style="background: #FFFBE5; color: #5C3C00; border-radius: 4px; padding: 4px;font-size: 80%">⚠️ Circular dependency detected</span> warning
+```ts
+@partial export class Employee {
+    @partial work: EmployeeWork;
+    name = 'Mustafah';
+}
+```
+```ts
+@partial export class EmployeeWork {
+    @partial employee: Employee;
+    doWork() {
+        console.log(`${this.employee.name} doWork()`);
+    }
+}
+```
+##### 🌱 Solution 1: Class name as string:
+```ts
+@partial export class EmployeeWork {
+    @partial('Employee') employee;
+    doWork() {
+        console.log(`${this.employee.name} doWork()`);
+    }
+}
+```
+
+##### 🌱 Solution 2: Class name as forward reference:
+```ts
+@partial export class EmployeeWork {
+    @partial(() => Employee) employee;
+    doWork() {
+        console.log(`${this.employee.name} doWork()`);
+    }
+}
+```
+##### 🌱 If you need strong typing, feel free to use interfaces:
+```ts
+@partial export class Employee {
+    @partial work: EmployeeWork;
+    name = 'Mustafah';
+}
+```
+```ts
+export interface IEmployee {
+    name: string;
+}
+```
+```ts
+@partial export class EmployeeWork {
+    @partial(() => Employee) employee: IEmployee;
+}
 ```
