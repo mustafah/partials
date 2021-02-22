@@ -35,9 +35,9 @@ function partialPropertyDecorator(target?, propertyName?, propertyType?) {
     const t = propertyType || Reflect.getMetadata('design:type', target, propertyName) || propertyName;
     if (t) {
         let lateType;
-        if (typeof t === 'string')
-            lateType = t;
-        else
+        if (typeof t === 'string') {
+            lateType = t.charAt(0).toLowerCase() + t.slice(1);
+        } else
             lateType = t.name ? (() => t) : t;
         target.constructor.__partials = target.constructor.__partials || {};
         target.constructor.__partials[propertyName] = { name: propertyName, lateType };
