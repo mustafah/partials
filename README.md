@@ -41,7 +41,6 @@ import partial from 'partials';
 ```
 ```ts
 @partial export class EmployeeLunch {
-  
     @partial model: EmployeeModel;
     goToLunch() {
         console.log(`goToLunch()`);
